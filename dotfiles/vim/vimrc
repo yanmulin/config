@@ -1,0 +1,81 @@
+set nocompatible
+let $LANG = 'en'  "set message language
+set langmenu=en   "set menu's language of gvim. no spaces beside '='
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+set mouse=a
+set encoding=utf-8
+let &t_ut=''
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set list
+set listchars=tab:\ \ ,eol:¬
+set scrolloff=5
+set tw=0
+set indentexpr=
+set backspace=indent,eol,start
+set foldmethod=indent
+set foldlevel=99
+set laststatus=2
+set autochdir
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+set pythonthreedll="/Users/yanmulin/.pyenv/versions/3.6.1/bin/python"
+
+
+let mapleader=' '
+syntax on
+set relativenumber
+set wildmenu
+set wrap
+set showcmd
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+noremap <LEADER><CR> :nohlsearch<CR>
+
+noremap J 6j
+noremap K 6k
+noremap n nzz
+noremap N Nzz
+
+inoremap <C-a> <C-o>^
+inoremap <C-e> <C-o>$
+" CTRL-U的Trick：打一个空格
+inoremap <C-u> <SPACE><C-o>d^
+
+
+map <C-\> :set splitright<CR>:vsplit<CR>
+noremap s <nop>
+map sl :set nosplitright<CR>:vsplit<CR>
+map sh :set splitright<CR>:vsplit<CR>
+map sj :set splitbelow<CR>:split<CR>
+map sk :set nosplitbelow<CR>:split<CR>
+map <LEADER>j <C-w>j
+map <LEADER>k <C-w>k
+map <LEADER>h <C-w>h
+map <LEADER>l <C-w>l
+
+map <LEADER><up> :res +5<CR>
+map <LEADER><down> :res -5<CR>
+map <LEADER><left> :vertical resize +5<CR>
+map <LEADER><right> :vertical resize -5<CR>
+
+" '<,'>normal ...
+map <LEADER><LEADER> <Esc>:/<++><CR>:nohlsearch<CR>c4l
+
+nnoremap - <C-o>
+nnoremap = <C-i>
+
+nnoremap <C-o> :tabe<CR>:e 
+nmap tt :tabe<CR>
+nmap th :-tabnext<CR>
+nmap tl :+tabnext<CR>
+
