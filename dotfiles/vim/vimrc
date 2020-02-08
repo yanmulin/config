@@ -1,23 +1,20 @@
 set nocompatible
 let $LANG = 'en'  "set message language
 set langmenu=en   "set menu's language of gvim. no spaces beside '='
-filetype on
-filetype indent on
-filetype plugin on
-filetype plugin indent on
+
+" 缩进制表符相关
+set expandtab
+set tabstop=4
+set softtabstop=4
+set autoindent
+
 set mouse=a
 set encoding=utf-8
 let &t_ut=''
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
 set list
-set listchars=tab:\ \ 
+set listchars=tab:>-
 set scrolloff=5
 set tw=0
-set indentexpr=
-set backspace=indent,eol,start
 set foldmethod=indent
 set foldlevel=99
 set laststatus=2
@@ -42,6 +39,11 @@ noremap J 6j
 noremap K 6k
 noremap n nzz
 noremap N Nzz
+
+" INSERT MODE: 自动匹配括号
+inoremap ( ()<LEFT>
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
 
 " INSERT MODE: 快速移动光标
 inoremap <C-a> <C-o>^ " 行首
