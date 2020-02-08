@@ -1,3 +1,7 @@
+fun! CharUnderCursor()
+    return getline('.')[col('.')-1]
+endf
+
 set nocompatible
 let $LANG = 'en'  "set message language
 set langmenu=en   "set menu's language of gvim. no spaces beside '='
@@ -11,8 +15,6 @@ set autoindent
 set mouse=a
 set encoding=utf-8
 let &t_ut=''
-set list
-set listchars=tab:>-
 set scrolloff=5
 set tw=0
 set foldmethod=indent
@@ -44,6 +46,9 @@ noremap N Nzz
 inoremap ( ()<LEFT>
 inoremap { {}<LEFT>
 inoremap [ []<LEFT>
+inoremap <expr> ) CharUnderCursor() == ')' ? '<RIGHT>' : ')'
+inoremap <expr> } CharUnderCursor() == '}' ? '<RIGHT>' : '}'
+inoremap <expr> ] CharUnderCursor() == ']' ? '<RIGHT>' : ']'
 
 " INSERT MODE: 快速移动光标
 inoremap <C-a> <C-o>^ " 行首
