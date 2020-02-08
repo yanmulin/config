@@ -13,7 +13,7 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set list
-set listchars=tab:\ \ ,eol:¬
+set listchars=tab:\ \ 
 set scrolloff=5
 set tw=0
 set indentexpr=
@@ -23,9 +23,6 @@ set foldlevel=99
 set laststatus=2
 set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-set pythonthreedll="/Users/yanmulin/.pyenv/versions/3.6.1/bin/python"
-
 
 let mapleader=' '
 syntax on
@@ -46,12 +43,12 @@ noremap K 6k
 noremap n nzz
 noremap N Nzz
 
-inoremap <C-a> <C-o>^
-inoremap <C-e> <C-o>$
-" CTRL-U的Trick：打一个空格
-inoremap <C-u> <SPACE><C-o>d^
+" INSERT MODE: 快速移动光标
+inoremap <C-a> <C-o>^ " 行首
+inoremap <C-e> <C-o>$ " 行尾
+inoremap <C-u> <SPACE><C-o>d^ " 删除光标前
 
-
+" 多窗口 
 map <C-\> :set splitright<CR>:vsplit<CR>
 noremap s <nop>
 map sl :set nosplitright<CR>:vsplit<CR>
@@ -63,19 +60,23 @@ map <LEADER>k <C-w>k
 map <LEADER>h <C-w>h
 map <LEADER>l <C-w>l
 
+" 窗口大小设置
 map <LEADER><up> :res +5<CR>
 map <LEADER><down> :res -5<CR>
 map <LEADER><left> :vertical resize +5<CR>
 map <LEADER><right> :vertical resize -5<CR>
 
-" '<,'>normal ...
-map <LEADER><LEADER> <Esc>:/<++><CR>:nohlsearch<CR>c4l
-
-nnoremap - <C-o>
-nnoremap = <C-i>
-
+" 标签页
 nnoremap <C-o> :tabe<CR>:e 
 nmap tt :tabe<CR>
 nmap th :-tabnext<CR>
 nmap tl :+tabnext<CR>
+
+" 占位符<++>：'<,'>normal ...
+map <LEADER><LEADER> <Esc>:/<++><CR>:nohlsearch<CR>c4l
+
+" 光标后退/前进
+nnoremap - <C-o>
+nnoremap = <C-i>
+
 
