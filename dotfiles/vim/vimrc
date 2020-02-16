@@ -8,9 +8,11 @@ set langmenu=en   "set menu's language of gvim. no spaces beside '='
 
 " 缩进制表符相关
 set expandtab
+set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set autoindent
+set cindent
 
 set mouse=a
 set encoding=utf-8
@@ -44,16 +46,19 @@ noremap N Nzz
 
 " INSERT MODE: 自动匹配括号
 inoremap ( ()<LEFT>
-inoremap { {}<LEFT>
+inoremap { {<CR>}<LEFT><UP><C-o>$
 inoremap [ []<LEFT>
 inoremap <expr> ) CharUnderCursor() == ')' ? '<RIGHT>' : ')'
 inoremap <expr> } CharUnderCursor() == '}' ? '<RIGHT>' : '}'
 inoremap <expr> ] CharUnderCursor() == ']' ? '<RIGHT>' : ']'
 
 " INSERT MODE: 快速移动光标
-inoremap <C-a> <C-o>^ " 行首
-inoremap <C-e> <C-o>$ " 行尾
-inoremap <C-u> <SPACE><C-o>d^ " 删除光标前
+" 行首
+inoremap <C-a> <C-o>^ 
+" 行尾
+inoremap <C-e> <C-o>$ 
+" 删除光标前
+inoremap <C-u> <SPACE><C-o>d^
 
 " 多窗口 
 map <C-\> :set splitright<CR>:vsplit<CR>
@@ -76,8 +81,8 @@ map <LEADER><right> :vertical resize -5<CR>
 " 标签页
 nnoremap <C-o> :tabe<CR>:e 
 nmap tt :tabe<CR>
-nmap th :-tabnext<CR>
-nmap tl :+tabnext<CR>
+nmap th :tabprev<CR>
+nmap tl :tabnext<CR>
 
 " 占位符<++>：'<,'>normal ...
 map <LEADER><LEADER> <Esc>:/<++><CR>:nohlsearch<CR>c4l
