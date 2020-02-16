@@ -1,3 +1,4 @@
+" Define Functions
 fun! CharUnderCursor()
     return getline('.')[col('.')-1]
 endf
@@ -23,6 +24,7 @@ set foldmethod=indent
 set foldlevel=99
 set laststatus=2
 set autochdir
+set backspace=indent,eol,start
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 let mapleader=' '
@@ -37,6 +39,9 @@ set incsearch
 set ignorecase
 set smartcase
 
+hi Search ctermbg=LightYellow
+hi Search ctermfg=Red
+
 noremap <LEADER><CR> :nohlsearch<CR>
 
 noremap J 6j
@@ -45,12 +50,12 @@ noremap n nzz
 noremap N Nzz
 
 " INSERT MODE: 自动匹配括号
-inoremap ( ()<LEFT>
-inoremap { {<CR>}<LEFT><UP><C-o>$
-inoremap [ []<LEFT>
-inoremap <expr> ) CharUnderCursor() == ')' ? '<RIGHT>' : ')'
-inoremap <expr> } CharUnderCursor() == '}' ? '<RIGHT>' : '}'
-inoremap <expr> ] CharUnderCursor() == ']' ? '<RIGHT>' : ']'
+" inoremap ( ()<LEFT>
+" inoremap { {<CR>}<LEFT><UP><C-o>$
+" inoremap [ []<LEFT>
+" inoremap <expr> ) CharUnderCursor() == ')' ? '<RIGHT>' : ')'
+" inoremap <expr> } CharUnderCursor() == '}' ? '<RIGHT>' : '}'
+" inoremap <expr> ] CharUnderCursor() == ']' ? '<RIGHT>' : ']'
 
 " INSERT MODE: 快速移动光标
 " 行首
@@ -91,4 +96,31 @@ map <LEADER><LEADER> <Esc>:/<++><CR>:nohlsearch<CR>c4l
 nnoremap - <C-o>
 nnoremap = <C-i>
 
+" Plugin ...
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'jiangmiao/auto-pairs' 
+Plug 'preservim/nerdtree'
+Plug 'easymotion/vim-easymotion'
+call plug#end()
+
+" NerdTree config
+noremap <C-n> :NERDTree<CR>
+" Autostart NERDTree if no file is open or a directory was open
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" EasyMotion config
+map <LEADER>j <Plug>(easymotion-lineforward)
+map <LEADER>k <Plug>(easymotion-k)
+map <LEADER>h <Plug>(easymotion-h)
+map <LEADER>l <Plug>(easymotion-linebackward)
+map <LEADER>/ <Plug>(easymotion-s2)
 
