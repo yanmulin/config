@@ -13,7 +13,13 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set autoindent
-set cindent
+" set cindent
+" "侦测文件类型"
+filetype on
+"载入文件类型插件"
+filetype plugin on
+"为特定文件类型载入相关缩进文件"
+filetype indent on
 
 set mouse=a
 set encoding=utf-8
@@ -118,9 +124,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " EasyMotion config
-map <LEADER>j <Plug>(easymotion-lineforward)
-map <LEADER>k <Plug>(easymotion-k)
-map <LEADER>h <Plug>(easymotion-h)
-map <LEADER>l <Plug>(easymotion-linebackward)
 map <LEADER>/ <Plug>(easymotion-s2)
 
+" auto-pairs
+let g:AutoPairsShortcutFastWrap = '<C-p>'
