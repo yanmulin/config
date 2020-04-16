@@ -21,5 +21,5 @@ apt-get -y dist-upgrade
 ### install the software we need for the VM and build env
 apt-get -y install build-essential g++ gcc cmake automake pkg-config \
 		   libtool libtool-bin git iptables net-tools coreutils \
-		   netcat-openbsd curl
+		   netcat-openbsd curl openssh-server
 
