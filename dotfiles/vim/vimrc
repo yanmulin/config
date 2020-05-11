@@ -36,6 +36,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 let mapleader=' '
 syntax on
 set relativenumber
+set number
 set wildmenu
 set wrap
 set showcmd
