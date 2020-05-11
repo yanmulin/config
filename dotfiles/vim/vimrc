@@ -9,9 +9,9 @@ set langmenu=en   "set menu's language of gvim. no spaces beside '='
 
 " 缩进制表符相关
 set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set autoindent
 " set cindent
 " "侦测文件类型"
