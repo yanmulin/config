@@ -18,8 +18,11 @@ add-apt-repository restricted
 apt-get update
 apt-get -y dist-upgrade
 
-### install the software we need for the VM and build env
+### install the software
 apt-get -y install build-essential g++ gcc cmake automake pkg-config \
 		   libtool libtool-bin git iptables net-tools coreutils \
 		   netcat-openbsd curl openssh-server
+
+apt-get -y fish
+
 
