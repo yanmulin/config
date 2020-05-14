@@ -1,20 +1,6 @@
 #!/bin/sh
 
-function install () {
-  case `uname -s` in
-    Darwin) brew install $1;;
-    Linux)
-      source /etc/os-release
-      case $ID in
-        ubuntu)apt-get install $1;;
-        *) echo Unknown OS: $ID; exit -1;;
-      esac;;
-    *) echo Unknown OS: `uname -s`; exit -1;;
-  esac
-}
-
-shell=`basename $SHELL`
-case $shell in
+case `basename $SHELL` in
   bash) 
     echo >> ~/.bash_profile
     echo '# config pyenv' >> ~/.bash_profile
