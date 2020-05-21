@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [! -e $HOME/.pyenv]; then
+if [ ! -e $HOME/.pyenv ]; then
   curl https://pyenv.run | bash
 fi
 
@@ -20,11 +20,11 @@ case `basename $SHELL` in
     echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
     ;;
   fish)
-    fish -c 'echo >> ~/.$__fish_config_dir/config.fish'
-    fish -c 'echo "# config pyenv" >> ~/.$__fish_config_dir/config.fish'
+    fish -c 'echo >> $__fish_config_dir/config.fish'
+    fish -c 'echo "# config pyenv" >> $__fish_config_dir/config.fish'
     fish -c 'set -Ux PYENV_ROOT $HOME/.pyenv'
-    fish -c 'set -Ux fish_user_paths $PYENV_ROOT/bin $fish_user_paths'
-    fish -c 'echo -e "if command -v pyenv 1>/dev/null 2>&1; then\n\tpyenv init - | source\nend" >> $__fish_config_dir/config.fish'
+    fish -c 'echo $fish_user_paths | grep -v $PYENV_ROOT && set -Ux fish_user_paths $PYENV_ROOT/bin $fish_user_paths'
+    fish -c 'echo -e "if command -v pyenv 1>/dev/null 2>&1\n\tpyenv init - | source\nend" >> $__fish_config_dir/config.fish'
     ;;
   *) echo 'Unknown shell: ' $shell; exit -1;;
 esac
