@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 srcpath=ubuntu-src
 
@@ -12,6 +12,7 @@ function lssrc() {
 function chsrc() {
   filepath=$srcpath/sources.$1.list 
   if [ -f $filepath ]; then
+    echo $filepath '-> /etc/apt/sources.list'
     cp /etc/apt/sources.list /etc/apt/sources.list.backup
     cp $filepath /etc/apt/sources.list
   else 
@@ -26,13 +27,11 @@ if [ -z "$SUDO_USER" ]; then
     exec sudo $0 "$@"
 fi
 
-args=`getopt s: $*`
-set -- $args
-for i do
-  case "$i" in
-    -s) chsource $2; shift;;
-    --) echo 'unknown option: ' $1; exit;;
-  esac
+while getopts 's:' OPT; do
+    case $OPT in
+        s) chsrc $OPTARG;;
+        ?) echo 'invalid option: '$OPT; exit 2;;
+    esac
 done
 
 ### update sources and get add-apt-repository
@@ -57,9 +56,7 @@ apt-get -y install build-essential libtool libtool-bin \
 apt-get -y install iptables net-tools coreutils netcat-openbsd \
                    openssh-server
 
-### install dev tools
-apt-get -y g++ gcc cmake automake git \
-           python3 python3-pip python3-venv \
-           mysql-server mysql-client libmysqlclient-dev
+### install global tools
+apt-get -y install curl git gcc python3 
 
 apt autoremove

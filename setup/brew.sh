@@ -1,7 +1,22 @@
 #!/bin/bash
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+function install_brew() {
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    which brew &>/dev/null || exit 1
+    echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/yanmulin/.bashrc
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+}
+    
+function install() {
+    brew list $1 &>/dev/null
+    if [ $? != 0 ]; then
+        brew install $1
+    fi
+}
 
-brew install g++ gcc cmake automake git \
-           python3 python3-pip python3-venv \
-           mysql-server mysql-client libmysqlclient-dev
+which brew &>/dev/null || install_brew
+
+install nvim
+install cmake
+install automake
+install mysql
