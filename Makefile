@@ -1,5 +1,10 @@
 vimrc: FORCE
-	ln -sf `pwd`/dotfiles/vim ~/.vim
+	test -d ~/.vim || mkdir -p ~/.vim
+	cp -r ./dotfiles/vim/vimrc ~/.vim
+
+neovim: FORCE
+	test -d ~/.config/nvim || mkdir -p ~/.config/nvim
+	cp ./dotfiles/vim/vimrc ~/.config/nvim/init.vim
 
 fish: FORCE
 	find ./dotfiles/fish -name '*' -type f | \
