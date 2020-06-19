@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ ! -e $HOME/.pyenv ]; then
-  curl https://pyenv.run | bash
+  curl https://pyenv.run | bash || exit
 fi
 
 case `basename $SHELL` in

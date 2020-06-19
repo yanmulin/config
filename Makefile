@@ -1,4 +1,4 @@
-dotfiles: FORCE
+vimrc: FORCE
 	ln -sf `pwd`/dotfiles/vim ~/.vim
 
 fish: FORCE
