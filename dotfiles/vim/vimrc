@@ -134,7 +134,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " EasyMotion config
-nnoremap <LEADER>/ <Plug>(easymotion-s2)
+nmap <LEADER>/ <Plug>(easymotion-s2)
 
 " Coc
 let g:coc_node_path = '/usr/local/bin/node'
