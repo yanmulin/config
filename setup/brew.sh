@@ -21,3 +21,5 @@ install cmake
 install automake
 install mysql
 install fish
+install ccat
+install fd
