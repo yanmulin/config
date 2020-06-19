@@ -20,3 +20,4 @@ install nvim
 install cmake
 install automake
 install mysql
+install fish
