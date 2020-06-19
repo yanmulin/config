@@ -116,9 +116,11 @@ endif
 source ~/.vim/autoload/plug.vim
 
 call plug#begin('~/.vim/plugged')
-Plug 'jiangmiao/auto-pairs' 
+Plug 'tpope/vim-surround' 
 Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/vim-peekaboo'
 call plug#end()
 
 " NerdTree config

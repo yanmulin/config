@@ -1,10 +1,10 @@
 vimrc: FORCE
 	test -d ~/.vim || mkdir -p ~/.vim
-	ln -sf ./dotfiles/vim/vimrc ~/.vim
+	ln -f ./dotfiles/vim/vimrc ~/.vim/vimrc
 
 neovim: FORCE
 	test -d ~/.config/nvim || mkdir -p ~/.config/nvim
-	ln -sf ./dotfiles/vim/vimrc ~/.config/nvim/init.vim
+	ln -f ./dotfiles/vim/vimrc ~/.config/nvim/init.vim
 
 fish: FORCE
 	setup/fish.sh
